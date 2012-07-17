@@ -1,0 +1,108 @@
+#!/usr/bin/python
+
+import ConfigParser
+import sys
+from xml.etree import ElementTree
+import os
+import commands
+from time import time
+import shutil
+
+args = {}
+
+progname = sys.argv[0].replace('./','')
+
+try:
+    args['input'] = sys.argv[1]
+except IndexError:
+    print "%s: missing config option. You have to specify a test configuration file.\nUsage: %s config-file" % (progname, progname)
+    sys.exit(1)
+
+args['output'] = "log"
+
+try:
+	os.mkdir(args['output'])
+except:
+	pass
+
+def load_tests():
+    conf_file = args['input']
+    config = ConfigParser.RawConfigParser()
+    config.read(conf_file)
+
+    try:
+        tests = []
+        for test_section in ','.join(config.get(progname, 'tests').split('\n')).split(','):
+            if test_section:
+                test = {'title': test_section.lower()}
+                for option in config.options(test_section):
+                    value = config.get(test_section, option)
+                    if value.lower() == 'true':
+                        value = ''
+                    elif value.lower() == 'false':
+                        continue
+                    test[option] = value
+                tests.append(test)
+
+        return tests
+    except ConfigParser.NoSectionError, e:
+        print "%s: test configuration section error - %s" % (progname, e)
+        sys.exit(1)
+    except ConfigParser.NoOptionError, e:
+        print "%s: test configuration option error - %s" % (progname, e)
+        sys.exit(1)
+
+def create_xml(test):
+	template = ElementTree.parse('tsung-template.xml')
+	server = template.find('servers/server')
+	if server == None:
+		raise AttributteError("tsung/servers/server section is not present in tsung-template.xml")
+	temp_host = server.attrib['host']
+	server.attrib['host'] = test['server']
+	server.attrib['port'] = test['port']
+	monitors = template.findall('monitoring/monitor')
+	[ m.set('host',test['server']) for m in monitors if m.get('host') == temp_host ]
+	out_file = os.path.join(args['output'],test['title']+'.xml')
+	with open(out_file, 'w') as f:
+		f.write('<?xml version="1.0"?>\n<!DOCTYPE tsung SYSTEM "/usr/share/tsung/tsung-1.0.dtd">\n')
+		template.write(f)
+	return out_file
+
+def get_lastlog():
+	res = [ (os.path.getmtime(top),top) for top, dirnames, _ in os.walk('log') if top != 'log' ]
+	res.sort()
+	return res[-1][1]
+
+def run_test(test):
+	conf_file = create_xml(test)
+	log_file = os.path.join(args['output'], 'tsung.log')
+	t1 = time()
+	print 'Launching test', test['title']
+	res = commands.getstatusoutput('tsung -f %s -l %s start' % (conf_file, log_file))
+	output = res[1].split()
+	if len(output)>6:
+		print res[1]
+
+	log_dir = os.path.realpath(get_lastlog())
+	dest_dir = log_dir+'-'+test['title']
+
+	dest_file = os.path.join(log_dir, os.path.basename(conf_file))
+	shutil.copyfile(conf_file, dest_file)
+	os.remove(conf_file)
+	shutil.move(log_dir, dest_dir)
+
+	cur_dir = os.path.realpath(os.curdir)
+	os.chdir(dest_dir)
+	res = commands.getstatusoutput(os.path.join(cur_dir,'tsung_stats.pl'))
+	if res[0]!= 0:
+		print 'Error: ', res[1], ' generating statistings' 
+	print 'Finished test %s in %d(s). Information stored in %s' %(test['title'], time()-t1, dest_dir)
+	os.chdir(cur_dir)
+
+if __name__ == '__main__':
+	try:
+    		tests = load_tests()
+    		for test in tests:
+			run_test(test)
+	except KeyboardInterrupt:
+		pass

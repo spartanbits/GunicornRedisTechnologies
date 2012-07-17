@@ -1,0 +1,169 @@
+#!/usr/bin/env python
+'''
+Created on Jun 7, 2012
+
+@author: pedro.vicente
+'''
+from optparse import OptionParser
+import sys
+import os
+import glob
+from bs4 import BeautifulSoup
+import json
+import itertools
+
+parser = OptionParser()
+parser.add_option("-m", "--markdown", dest="markdown", default=False, help="Generate output with markdown sintax")
+
+(options, args) = parser.parse_args()
+
+output = "markdown" if options.markdown else ""
+
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+def get_number(s, n=0):
+    res = [float(tmp) for tmp in s.split() if is_number(tmp)]
+    try:
+        return res[n]
+    except IndexError:
+        if res:
+            return res[-1]
+        else:
+            return 0.0
+
+def get_number_with_description(s,n=0):
+    res = s.split()
+    try:
+        return float(res[n]), ''.join(res[n+1:])
+    except IndexError:
+        if res:
+            return res[-1], ""
+        else:
+            return 0.0, ""
+    except ValueError:
+        return 0.0, ""
+
+class TestResults:
+    def __init__(self, filename, **entries):
+        self.__dict__.update(entries)
+        self.afilename = filename
+        dirname = os.path.dirname(filename)
+        workers = os.path.dirname(dirname)
+        systemstate = os.path.dirname(workers)
+        self.description = "%s-%s-%s" % (os.path.basename(dirname).split('-')[-1], os.path.basename(workers), os.path.basename(systemstate))
+        self.output = json.dumps(self.__dict__, sort_keys=True, indent=4)
+        
+    def __str__(self):
+        return "%s:\n %s" % (self.afilename, self.output)
+
+def get_dict_from_row(headers, row):
+    values = [tmp.getText() for tmp in row.find_all('td')]
+    name, values = values[0], values[1:]
+    data = dict(zip(headers,values))
+    return name, data
+
+
+def get_data_from_table(table):
+    headers = [ tmp.getText().lower().strip().replace(' ', '_').replace('\n','') for tmp in table.find_all('th')]
+    rows = [tmp for tmp in table.find_all('tr')[1:]]
+    objects = [ get_dict_from_row(headers[1:], row) for row in rows]
+    return dict(objects)
+
+def get_data_from_report_file(filename):
+    with open(filename) as f:
+        soup = BeautifulSoup(f)
+        #getAll statitistics Name is contained in h3 and the next sibling is the table. Filtering tables withoud td
+        filtered = lambda x: [tmp for tmp in x.findNextSiblings() if tmp.find('td')]
+        data = [ (tmp.getText().lower().strip().replace(' ', '_'), filtered(tmp)[0]) for tmp in soup.find_all('h3') if filtered(tmp)]
+        res = dict([ (name, get_data_from_table(table)) for name, table in data])
+        return TestResults(filename, **res)
+            
+def print_data(res, headers, output):
+    join_headers = lambda x: [x[0]+'.'+tmp for tmp in x[1].keys()]
+    output_header = ['test_description']+ list(itertools.chain(*[ join_headers(header) for header in headers ])) + ['filename']
+
+    
+    output_data = []
+    max_description_len = len(output_header[0])
+    for data in res:
+        values = []
+        for label in headers:
+            key = label[0]
+            i=1
+            for subkey in label[1].keys():
+                tmp = getattr(data,key, None)
+                value = tmp.get(subkey)[label[1][subkey]] if tmp and tmp.get(subkey) else str(0.0)
+                value = get_number_with_description(str(value))
+                values.append(str(value[0]))
+                if value[1] != "" and output_header[i].find(value[1]) == -1:
+                    output_header[i]= output_header[i] + value[1]
+                i+=1
+        tmp_description_len = len(data.description)
+        if tmp_description_len > max_description_len:
+            max_description_len = tmp_description_len
+        values = [data.description] + values + [data.afilename]
+        output_data.append(list(values))
+    
+    if output != 'markdown':
+        if len(output_header[0]) < max_description_len:
+            output_header[0]+=' '*(max_description_len-len(output_header[0]))
+    
+        template = ['{'+str(i)+':'+ str(len(output_header[i])+5)+'}' for i in xrange(len(output_header))]
+        template = ''.join(template)
+        print template.format(*output_header)
+        for tmp in output_data:
+            print template.format(*tmp)
+    else:
+        from texttable import Texttable
+        #join de first element with the file to have a markdown link
+        output_data = [["[%s](%s)" % (tmp[0],tmp[-1])]+tmp[1:] for tmp in output_data]
+        output_data = [output_header[0:-1]] + [tmp[0:-1] for tmp in output_data]
+        #get max len for each row
+        string_list_len = lambda x: [len(x) for x in tmp]
+        row = lambda x,i: [ row[i] for row in x ]
+        output_len = [string_list_len(tmp) for tmp in output_data]
+        output_len = [ max(row(output_len,i)) for i in xrange(len(output_len[0])) ]
+
+        #set output format
+        table=Texttable()
+        table.set_cols_width(output_len)
+        table.set_chars(['-','|','|:','-'])
+        table.set_deco(Texttable.HEADER|Texttable.VLINES| Texttable.BORDER)
+        table.add_rows(output_data)
+        print table.draw()
+        
+        
+
+if len(sys.argv) <2:
+    print 'Not enough arguments. Directory path of logs is mandatory as argument. Example */*1worker*/report.html'
+    sys.exit(0)
+
+FILENAME_TO_ANALYSE = 'report.html'
+#print sys.argv[1]
+#print glob.glob(sys.argv[1])
+
+if sys.argv[1].find('*') == -1:
+    filenames = [os.path.realpath(tmp) for tmp in sys.argv[1:] if tmp.find(FILENAME_TO_ANALYSE) != -1]
+else:
+    filenames = [os.path.realpath(tmp) for tmp in glob.glob(sys.argv[1]) if tmp.find(FILENAME_TO_ANALYSE) != -1 ]
+
+#print filenames
+data_func = lambda k: k.http_return_code['200']['highest_rate']
+sort_func = lambda k: get_number(k.http_return_code['200']['highest_rate'])
+res = sorted([get_data_from_report_file(tmp) for tmp in filenames if os.path.exists(tmp)], key = sort_func, reverse=True)
+
+errors_labels = reduce(lambda x,y: x | y, [set(tmp.errors.keys()) for tmp in res if hasattr(tmp, 'errors')])
+errors_values  = ['highest_rate' for x in xrange(len(errors_labels))]
+http_header = ('http_return_code', {'200': 'highest_rate', '500': 'highest_rate'})
+error_header = ('errors', dict(zip(errors_labels, errors_values)))
+counter_statistics = ('counters_statistics',{'users_count':'max', 'finish_users_count': 'max'})
+main_statistics = ('main_statistics',{'connect': 'highest_rate','request': 'highest_rate'})
+headers = [ http_header, main_statistics, counter_statistics, error_header ]
+
+print_data(res,headers,output)
+

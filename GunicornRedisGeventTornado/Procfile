@@ -1,0 +1,24 @@
+gevent_wsgi_redis_2: python app.py -w 4 -r 2
+gevent_pywsgi_redis_2: python app.py -w 4 -p -r 2
+gunicorn_gevent_redis_2: gunicorn -b 0.0.0.0:$PORT -w 4 -k gevent app:build_app(redisconn=2)
+gunicorn_gevent_wsgi_redis_2: gunicorn -b 0.0.0.0:$PORT -w 4 -k gevent_wsgi app:build_app(redisconn=2)
+gunicorn_gevent_pywsgi_redis_2: gunicorn -b 0.0.0.0:$PORT -w 4 -k gevent_pywsgi app:build_app(redisconn=2)
+gunicorn_tornado_redis_2: gunicorn -b 0.0.0.0:$PORT -w 4 -k tornado app:build_app(redisconn=2)
+gevent_wsgi_redis_4: python app.py -w 4 -r 4
+gevent_pywsgi_redis_4: python app.py -w 4 -p -r 4
+gunicorn_gevent_redis_4: gunicorn -b 0.0.0.0:$PORT -w 4 -k gevent app:build_app(redisconn=4)
+gunicorn_gevent_wsgi_redis_4: gunicorn -b 0.0.0.0:$PORT -w 4 -k gevent_wsgi app:build_app(redisconn=4)
+gunicorn_gevent_pywsgi_redis_4: gunicorn -b 0.0.0.0:$PORT -w 4 -k gevent_pywsgi app:build_app(redisconn=4)
+gunicorn_tornado_redis_4: gunicorn -b 0.0.0.0:$PORT -w 4 -k tornado app:build_app(redisconn=4)
+gevent_wsgi_redis_6: python app.py -w 4 -r 6
+gevent_pywsgi_redis_6: python app.py -w 4 -p -r 6
+gunicorn_gevent_redis_6: gunicorn -b 0.0.0.0:$PORT -w 4 -k gevent app:build_app(redisconn=6)
+gunicorn_gevent_wsgi_redis_6: gunicorn -b 0.0.0.0:$PORT -w 4 -k gevent_wsgi app:build_app(redisconn=6)
+gunicorn_gevent_pywsgi_redis_6: gunicorn -b 0.0.0.0:$PORT -w 4 -k gevent_pywsgi app:build_app(redisconn=6)
+gunicorn_tornado_redis_6: gunicorn -b 0.0.0.0:$PORT -w 4 -k tornado app:build_app(redisconn=6)
+gevent_wsgi_redis_8: python app.py -w 4 -r 8
+gevent_pywsgi_redis_8: python app.py -w 4 -p -r 8
+gunicorn_gevent_redis_8: gunicorn -b 0.0.0.0:$PORT -w 4 -k gevent app:build_app(redisconn=8)
+gunicorn_gevent_wsgi_redis_8: gunicorn -b 0.0.0.0:$PORT -w 4 -k gevent_wsgi app:build_app(redisconn=8)
+gunicorn_gevent_pywsgi_redis_8: gunicorn -b 0.0.0.0:$PORT -w 4 -k gevent_pywsgi app:build_app(redisconn=8)
+gunicorn_tornado_redis_8: gunicorn -b 0.0.0.0:$PORT -w 4 -k tornado app:build_app(redisconn=8)
