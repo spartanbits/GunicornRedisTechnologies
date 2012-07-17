@@ -1,0 +1,34 @@
+set style data  linespoint
+set terminal png  size 1024,768
+set grid
+set output "images/graphes-HTTP_CODE-rate.png"
+set title " rate"
+set xlabel "unit = sec "
+set ylabel "number/sec"
+show title
+set key left top
+plot  "data/200.txt" using  1:2 title "200"
+set output "images/graphes-HTTP_CODE-total.png"
+set title " total"
+set xlabel "unit = sec "
+set ylabel "total"
+show title
+set key left top
+plot  "data/200.txt" using  1:3 title "200"
+set style data  linespoint
+set terminal png tiny size 320,240
+set grid
+set output "images/graphes-HTTP_CODE-rate_tn.png"
+set title " rate"
+set xlabel "unit = sec "
+set ylabel "number/sec"
+show title
+set key left top
+plot  "data/200.txt" using  1:2 title "200"
+set output "images/graphes-HTTP_CODE-total_tn.png"
+set title " total"
+set xlabel "unit = sec "
+set ylabel "total"
+show title
+set key left top
+plot  "data/200.txt" using  1:3 title "200"
