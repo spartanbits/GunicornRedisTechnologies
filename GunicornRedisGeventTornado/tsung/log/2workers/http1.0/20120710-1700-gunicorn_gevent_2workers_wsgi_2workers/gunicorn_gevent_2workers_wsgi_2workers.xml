@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/usr/share/tsung/tsung-1.0.dtd">
+<tsung loglevel="warning" version="1.0">
+
+  
+  <clients>
+    <client cpu="2" host="client1" maxusers="800">
+    	<ip value="11.0.1.1" />
+    	<ip value="11.0.1.2" />
+    	<ip value="11.0.1.3" />
+    	<ip value="11.0.1.4" />
+	<ip value="11.0.1.5" />
+	<ip value="11.0.1.6" />
+	<ip value="11.0.1.7" />
+	<ip value="11.0.1.8" />
+	<ip value="11.0.1.9" />
+	<ip value="11.0.1.10" />
+	<ip value="11.0.1.11" />
+	<ip value="11.0.1.12" />
+	<ip value="11.0.1.13" />
+	<ip value="11.0.1.14" />
+	<ip value="11.0.1.15" />
+	<ip value="11.0.1.16" />
+	<ip value="11.0.1.17" />
+	<ip value="11.0.1.18" />
+	<ip value="11.0.1.19" />
+	<ip value="11.0.1.20" />
+	<ip value="11.0.1.21" />
+	<ip value="11.0.1.22" />
+	<ip value="11.0.1.23" />
+	<ip value="11.0.1.24" />
+	<ip value="11.0.1.25" />
+	<ip value="11.0.1.26" />
+	<ip value="11.0.1.27" />
+	<ip value="11.0.1.28" />
+	<ip value="11.0.1.29" />
+	<ip value="11.0.1.30" />
+	<ip value="11.0.1.31" />
+	<ip value="11.0.1.32" />
+	<ip value="11.0.1.33" />
+	<ip value="11.0.1.34" />
+	<ip value="11.0.1.35" />
+	<ip value="11.0.1.36" />
+	<ip value="11.0.1.37" />
+	<ip value="11.0.1.38" />
+	<ip value="11.0.1.39" />
+	<ip value="11.0.1.40" />
+	<ip value="11.0.1.41" />
+	<ip value="11.0.1.42" />
+	<ip value="11.0.1.43" />
+	<ip value="11.0.1.44" />
+	<ip value="11.0.1.45" />
+	<ip value="11.0.1.46" />
+	<ip value="11.0.1.47" />
+	<ip value="11.0.1.48" />
+	<ip value="11.0.1.50" />
+    </client>
+    <client cpu="2" host="client2" maxusers="800">
+    	<ip value="11.0.2.1" />
+    	<ip value="11.0.2.2" />
+    	<ip value="11.0.2.3" />
+    	<ip value="11.0.2.4" />
+	<ip value="11.0.2.5" />
+	<ip value="11.0.2.6" />
+	<ip value="11.0.2.7" />
+	<ip value="11.0.2.8" />
+	<ip value="11.0.2.9" />
+	<ip value="11.0.2.10" />
+	<ip value="11.0.2.11" />
+	<ip value="11.0.2.12" />
+	<ip value="11.0.2.13" />
+	<ip value="11.0.2.14" />
+	<ip value="11.0.2.15" />
+	<ip value="11.0.2.16" />
+	<ip value="11.0.2.17" />
+	<ip value="11.0.2.18" />
+	<ip value="11.0.2.19" />
+	<ip value="11.0.2.20" />
+	<ip value="11.0.2.21" />
+	<ip value="11.0.2.22" />
+	<ip value="11.0.2.23" />
+	<ip value="11.0.2.24" />
+	<ip value="11.0.2.25" />
+	<ip value="11.0.2.26" />
+	<ip value="11.0.2.27" />
+	<ip value="11.0.2.28" />
+	<ip value="11.0.2.29" />
+	<ip value="11.0.2.30" />
+	<ip value="11.0.2.31" />
+	<ip value="11.0.2.32" />
+	<ip value="11.0.2.33" />
+	<ip value="11.0.2.34" />
+	<ip value="11.0.2.35" />
+	<ip value="11.0.2.36" />
+	<ip value="11.0.2.37" />
+	<ip value="11.0.2.38" />
+	<ip value="11.0.2.39" />
+	<ip value="11.0.2.40" />
+	<ip value="11.0.2.41" />
+	<ip value="11.0.2.42" />
+	<ip value="11.0.2.43" />
+	<ip value="11.0.2.44" />
+	<ip value="11.0.2.45" />
+	<ip value="11.0.2.46" />
+	<ip value="11.0.2.47" />
+	<ip value="11.0.2.48" />
+	<ip value="11.0.2.49" />
+	<ip value="11.0.2.50" />
+    </client>
+    <client cpu="2" host="client3" maxusers="800">
+    	<ip value="11.0.3.1" />
+    	<ip value="11.0.3.2" />
+    	<ip value="11.0.3.3" />
+    	<ip value="11.0.3.4" />
+	<ip value="11.0.3.5" />
+	<ip value="11.0.3.6" />
+	<ip value="11.0.3.7" />
+	<ip value="11.0.3.8" />
+	<ip value="11.0.3.9" />
+	<ip value="11.0.3.10" />
+	<ip value="11.0.3.11" />
+	<ip value="11.0.3.12" />
+	<ip value="11.0.3.13" />
+	<ip value="11.0.3.14" />
+	<ip value="11.0.3.15" />
+	<ip value="11.0.3.16" />
+	<ip value="11.0.3.17" />
+	<ip value="11.0.3.18" />
+	<ip value="11.0.3.19" />
+	<ip value="11.0.3.20" />
+	<ip value="11.0.3.21" />
+	<ip value="11.0.3.22" />
+	<ip value="11.0.3.23" />
+	<ip value="11.0.3.24" />
+	<ip value="11.0.3.25" />
+	<ip value="11.0.3.26" />
+	<ip value="11.0.3.27" />
+	<ip value="11.0.3.28" />
+	<ip value="11.0.3.29" />
+	<ip value="11.0.3.30" />
+	<ip value="11.0.3.31" />
+	<ip value="11.0.3.32" />
+	<ip value="11.0.3.33" />
+	<ip value="11.0.3.34" />
+	<ip value="11.0.3.35" />
+	<ip value="11.0.3.36" />
+	<ip value="11.0.3.37" />
+	<ip value="11.0.3.38" />
+	<ip value="11.0.3.39" />
+	<ip value="11.0.3.40" />
+	<ip value="11.0.3.41" />
+	<ip value="11.0.3.42" />
+	<ip value="11.0.3.43" />
+	<ip value="11.0.3.44" />
+	<ip value="11.0.3.45" />
+	<ip value="11.0.3.46" />
+	<ip value="11.0.3.47" />
+	<ip value="11.0.3.48" />
+	<ip value="11.0.3.49" />
+	<ip value="11.0.3.50" />
+    </client>
+  </clients>
+  
+  
+<servers>
+  <server host="server" port="5100" type="tcp" />
+</servers>
+
+   
+  <monitoring>
+    <monitor host="server" type="erlang" />
+    <monitor host="redis" type="erlang" />
+    <monitor host="client1" type="erlang" />
+    <monitor host="client2" type="erlang" />
+    <monitor host="client3" type="erlang" />
+  </monitoring>
+  
+  <load duration="210" unit="second">
+  
+   <arrivalphase duration="10" phase="1" unit="second">
+     <users arrivalrate="100" maxnumber="1000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="2" unit="second">
+     <users arrivalrate="200" maxnumber="2000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="3" unit="second">
+     <users arrivalrate="300" maxnumber="3000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="4" unit="second">
+     <users arrivalrate="400" maxnumber="4000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="5" unit="second">
+     <users arrivalrate="500" maxnumber="5000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="6" unit="second">
+     <users arrivalrate="600" maxnumber="6000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="7" unit="second">
+     <users arrivalrate="700" maxnumber="7000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="8" unit="second">
+     <users arrivalrate="800" maxnumber="8000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="9" unit="second">
+     <users arrivalrate="900" maxnumber="9000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="10" unit="second">
+     <users arrivalrate="1000" maxnumber="10000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="11" unit="second">
+     <users arrivalrate="1100" maxnumber="11000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="12" unit="second">
+     <users arrivalrate="1200" maxnumber="12000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="13" unit="second">
+     <users arrivalrate="1300" maxnumber="13000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="14" unit="second">
+     <users arrivalrate="1400" maxnumber="14000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="15" unit="second">
+     <users arrivalrate="1500" maxnumber="15000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="16" unit="second">
+     <users arrivalrate="1600" maxnumber="16000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="17" unit="second">
+     <users arrivalrate="1700" maxnumber="17000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="18" unit="second">
+     <users arrivalrate="1800" maxnumber="18000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="19" unit="second">
+     <users arrivalrate="1900" maxnumber="19000" unit="second" />
+   </arrivalphase>
+   <arrivalphase duration="10" phase="20" unit="second">
+     <users arrivalrate="2000" maxnumber="20000" unit="second" />
+   </arrivalphase>
+  </load>
+  <options>
+   <option name="user_agent" type="ts_http">
+    <user_agent probability="80">Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.8) Gecko/20050513 Galeon/1.3.21</user_agent>
+    <user_agent probability="20">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
+   </option>
+   <option max="65535" min="1025" name="ports_range" />
+  </options>
+
+  
+
+ <sessions>
+  <session name="http-example" probability="100" type="ts_http">
+
+    
+    <request> <http method="GET" url="/" version="1.0" /> </request>
+    <request> <http method="GET" url="/" version="1.0" /> </request>
+    <request> <http method="GET" url="/" version="1.0" /> </request>
+    <request> <http method="GET" url="/" version="1.0" /> </request>
+    <request> <http method="GET" url="/" version="1.0" /> </request>
+    <request> <http method="GET" url="/" version="1.0" /> </request>
+    <request> <http method="GET" url="/" version="1.0" /> </request>
+    <request> <http method="GET" url="/" version="1.0" /> </request>
+    <request> <http method="GET" url="/" version="1.0" /> </request>
+    <request> <http method="GET" url="/" version="1.0" /> </request>
+  </session>
+ 
+ </sessions>
+</tsung>
