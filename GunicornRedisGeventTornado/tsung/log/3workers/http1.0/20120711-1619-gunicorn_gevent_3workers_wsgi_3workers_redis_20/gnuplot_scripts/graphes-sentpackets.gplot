@@ -1,0 +1,68 @@
+set style data  linespoint
+set terminal png  size 1024,768
+set grid
+set output "images/graphes-sentpackets-rate.png"
+set title " rate"
+set xlabel "unit = sec "
+set ylabel "sentpackets"
+show title
+set key left top
+plot  "data/sentpackets:os_mon@client1.txt" using  1:2 title "sentpackets@client1", "data/sentpackets:os_mon@client3.txt" using  1:2 title "sentpackets@client3", "data/sentpackets:os_mon@server.txt" using  1:2 title "sentpackets@server", "data/sentpackets:os_mon@redis.txt" using  1:2 title "sentpackets@redis", "data/sentpackets:os_mon@client2.txt" using  1:2 title "sentpackets@client2"
+set output "images/graphes-sentpackets-mean.png"
+set title " mean"
+set xlabel "unit = sec "
+show title
+set key left top
+plot  "data/sentpackets:os_mon@client1.txt" using  1:3 title "sentpackets@client1", "data/sentpackets:os_mon@client3.txt" using  1:3 title "sentpackets@client3", "data/sentpackets:os_mon@server.txt" using  1:3 title "sentpackets@server", "data/sentpackets:os_mon@redis.txt" using  1:3 title "sentpackets@redis", "data/sentpackets:os_mon@client2.txt" using  1:3 title "sentpackets@client2"
+set output "images/graphes-sentpackets-stdvar.png"
+set title " stdvar"
+set xlabel "unit = sec "
+show title
+set key left top
+plot  "data/sentpackets:os_mon@client1.txt" using  1:4 title "sentpackets@client1", "data/sentpackets:os_mon@client3.txt" using  1:4 title "sentpackets@client3", "data/sentpackets:os_mon@server.txt" using  1:4 title "sentpackets@server", "data/sentpackets:os_mon@redis.txt" using  1:4 title "sentpackets@redis", "data/sentpackets:os_mon@client2.txt" using  1:4 title "sentpackets@client2"
+set output "images/graphes-sentpackets-max_sample.png"
+set title " max_sample"
+set xlabel "unit = sec "
+show title
+set key left top
+plot  "data/sentpackets:os_mon@client1.txt" using  1:5 title "sentpackets@client1", "data/sentpackets:os_mon@client3.txt" using  1:5 title "sentpackets@client3", "data/sentpackets:os_mon@server.txt" using  1:5 title "sentpackets@server", "data/sentpackets:os_mon@redis.txt" using  1:5 title "sentpackets@redis", "data/sentpackets:os_mon@client2.txt" using  1:5 title "sentpackets@client2"
+set output "images/graphes-sentpackets-min_sample.png"
+set title " min_sample"
+set xlabel "unit = sec "
+show title
+set key left top
+plot  "data/sentpackets:os_mon@client1.txt" using  1:6 title "sentpackets@client1", "data/sentpackets:os_mon@client3.txt" using  1:6 title "sentpackets@client3", "data/sentpackets:os_mon@server.txt" using  1:6 title "sentpackets@server", "data/sentpackets:os_mon@redis.txt" using  1:6 title "sentpackets@redis", "data/sentpackets:os_mon@client2.txt" using  1:6 title "sentpackets@client2"
+set style data  linespoint
+set terminal png tiny size 320,240
+set grid
+set output "images/graphes-sentpackets-rate_tn.png"
+set title " rate"
+set xlabel "unit = sec "
+set ylabel "sentpackets"
+show title
+set key left top
+plot  "data/sentpackets:os_mon@client1.txt" using  1:2 title "sentpackets@client1", "data/sentpackets:os_mon@client3.txt" using  1:2 title "sentpackets@client3", "data/sentpackets:os_mon@server.txt" using  1:2 title "sentpackets@server", "data/sentpackets:os_mon@redis.txt" using  1:2 title "sentpackets@redis", "data/sentpackets:os_mon@client2.txt" using  1:2 title "sentpackets@client2"
+set output "images/graphes-sentpackets-mean_tn.png"
+set title " mean"
+set xlabel "unit = sec "
+show title
+set key left top
+plot  "data/sentpackets:os_mon@client1.txt" using  1:3 title "sentpackets@client1", "data/sentpackets:os_mon@client3.txt" using  1:3 title "sentpackets@client3", "data/sentpackets:os_mon@server.txt" using  1:3 title "sentpackets@server", "data/sentpackets:os_mon@redis.txt" using  1:3 title "sentpackets@redis", "data/sentpackets:os_mon@client2.txt" using  1:3 title "sentpackets@client2"
+set output "images/graphes-sentpackets-stdvar_tn.png"
+set title " stdvar"
+set xlabel "unit = sec "
+show title
+set key left top
+plot  "data/sentpackets:os_mon@client1.txt" using  1:4 title "sentpackets@client1", "data/sentpackets:os_mon@client3.txt" using  1:4 title "sentpackets@client3", "data/sentpackets:os_mon@server.txt" using  1:4 title "sentpackets@server", "data/sentpackets:os_mon@redis.txt" using  1:4 title "sentpackets@redis", "data/sentpackets:os_mon@client2.txt" using  1:4 title "sentpackets@client2"
+set output "images/graphes-sentpackets-max_sample_tn.png"
+set title " max_sample"
+set xlabel "unit = sec "
+show title
+set key left top
+plot  "data/sentpackets:os_mon@client1.txt" using  1:5 title "sentpackets@client1", "data/sentpackets:os_mon@client3.txt" using  1:5 title "sentpackets@client3", "data/sentpackets:os_mon@server.txt" using  1:5 title "sentpackets@server", "data/sentpackets:os_mon@redis.txt" using  1:5 title "sentpackets@redis", "data/sentpackets:os_mon@client2.txt" using  1:5 title "sentpackets@client2"
+set output "images/graphes-sentpackets-min_sample_tn.png"
+set title " min_sample"
+set xlabel "unit = sec "
+show title
+set key left top
+plot  "data/sentpackets:os_mon@client1.txt" using  1:6 title "sentpackets@client1", "data/sentpackets:os_mon@client3.txt" using  1:6 title "sentpackets@client3", "data/sentpackets:os_mon@server.txt" using  1:6 title "sentpackets@server", "data/sentpackets:os_mon@redis.txt" using  1:6 title "sentpackets@redis", "data/sentpackets:os_mon@client2.txt" using  1:6 title "sentpackets@client2"
