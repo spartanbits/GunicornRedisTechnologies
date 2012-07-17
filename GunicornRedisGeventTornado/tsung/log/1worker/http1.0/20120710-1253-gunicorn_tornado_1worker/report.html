@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+  <head>
+    <title>Tsung  - Stats Report </title>
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+	<link rel="Index" href="/"/>
+    <style type="text/css">
+	  body { background-color: #EEEEEE;}
+      h1, h2, h3, h4 { color: #005A9C;  }
+      h1 { font: 175% sans-serif; padding: 5px; text-align: center;}
+      h2 { font: 130% sans-serif; padding: 5px; }
+      h2.main { text-align: center;
+          background-color: #DD8888;
+          }
+      h3 { font: 130% sans-serif; 
+          text-align: center;
+          background-color: #DDDDDD;
+          margin-left: 20px; 
+          border: 1px solid #CCCCCC;
+          margin-right: 20px; 
+          }
+      h4 { font: bold 100% sans-serif }
+      h5 { font: italic 100% sans-serif }
+      h6 { font: small-caps 100% sans-serif }
+      var {color: red; }
+      kbd {font-weight: bold;}
+      code {color: blue; }
+      samp {color: #5A009C; }
+      table.stats {
+          margin-left: 25px;
+          background-color: #DDDDDD;
+          border: 1px solid #000;
+          }
+      address { font-size: small; text-align: center;}
+      #footer {
+          position:              fixed;
+          bottom:                0px;
+          left:                  0;
+          right:                  0;
+          background-color: #fff; 
+          width: 100%;
+          padding: 2px;
+          border: 1px solid #999999;
+          }
+      #maincontent {     
+          margin-left:  190px;
+          padding: 5px;
+          }
+      #headerBox {
+          position:    fixed;
+          float:       left;
+          width:  190px;
+          height: 90%;
+          background-color: #FFFFFF; 
+          border: 1px solid #ffffff;
+             } 
+      th.stats {
+          border-bottom: 1px solid #005A9C;
+          border-top: 1px solid #005A9C;
+          } 
+      td.stats {
+          border-right: 1px solid #AAA;
+          text-align: right;
+          } 
+      #os_mon {text-align: center; } 
+      .version {
+          font: italic 80% sans-serif; 
+          color: #005A9C; 
+          text-align: center;
+          }
+      </style>
+    <script type="text/javascript" src="dygraph-combined.js"></script> 
+
+  </head>
+<body>
+	<div id="headerBox">
+        <h1>Tsung </h1>
+      <p class="version"><em>version 1.4.1</em></p>
+
+      <h2><a class="subtitle" href="report.html">Stats Report </a></h2>
+      <ul>
+        <li><a href="report.html#stats">Main statistics</a></li>
+        <li><a href="report.html#transaction">Transactions</a></li>
+        <li><a href="report.html#network">Network Throughput</a></li>
+        <li><a href="report.html#count">Counters</a></li>
+        <li><a href="report.html#os_mon">Server monitoring</a></li>
+        <li><a href="report.html#http_status">HTTP status</a></li>
+        <li><a href="report.html#errors">Errors</a></li>
+      </ul>
+
+      <h2><a class="subtitle" href="graph.html">Graphs Report </a></h2>
+      <ul>
+        <li><a href="graph.html#response_time">Response times</a></li>
+        <li><a href="graph.html#throughput">Throughput graphs</a></li>
+        <li><a href="graph.html#users">Simultaneous Users</a></li>
+        <li><a href="graph.html#os_mon">Server monitoring</a></li>
+        <li><a href="graph.html#http_status">HTTP status</a></li>
+        <li><a href="graph.html#errors">Errors</a></li>
+     </ul>
+      <h2><a class="subtitle" href="gunicorn_tornado_1worker.xml">XML Config file</a></h2>
+    </div>
+
+
+
+<div id="maincontent">
+ <h2 class="main">tsung - Statistics</h2>
+
+<div id="stats">
+ <h3>Main Statistics</h3>
+ <table class="stats">
+  <tr><th class="stats">Name</th> <th class="stats">highest 10sec
+ mean</th> <th class="stats">lowest 10sec mean </th><th
+ class="stats">Highest Rate</th><th class="stats"> Mean </th><th class="stats">Count</th>
+  </tr>
+     <tr>
+		<td class="stats">connect</td>
+		<td class="stats">0.63 sec </td>
+		<td class="stats">0.998 msec</td>
+		<td class="stats">2780.8 / sec</td>
+		<td class="stats">0.44 sec </td>
+		<td class="stats">441028 </td>
+     </tr>
+     <tr>
+		<td class="stats">page</td>
+		<td class="stats">10.02 sec </td>
+		<td class="stats">16.36 msec</td>
+		<td class="stats">547.9 / sec</td>
+		<td class="stats">7.23 sec </td>
+		<td class="stats">75925 </td>
+     </tr>
+     <tr>
+		<td class="stats">request</td>
+		<td class="stats">1.00 sec </td>
+		<td class="stats">1.50 msec</td>
+		<td class="stats">5040.8 / sec</td>
+		<td class="stats">0.72 sec </td>
+		<td class="stats">778573 </td>
+     </tr>
+     <tr>
+		<td class="stats">session</td>
+		<td class="stats">10.02 sec </td>
+		<td class="stats">22.19 msec</td>
+		<td class="stats">546 / sec</td>
+		<td class="stats">7.25 sec </td>
+		<td class="stats">75957 </td>
+     </tr>
+ </table>
+</div>
+
+<div id="transaction">
+ <h3>Transactions Statistics</h3>
+ <table class="stats">
+  <tr><th class="stats">Name</th> <th class="stats">highest 10sec
+ mean</th> <th class="stats">lowest 10sec mean</th><th
+ class="stats">Highest Rate</th><th class="stats"> Mean </th><th class="stats">Count</th>
+  </tr>
+ </table>
+</div>
+
+<div id="network">
+ <h3>Network Throughput</h3>
+ <table class="stats">
+  <tr><th class="stats">Name</th> <th class="stats">Highest Rate</th><th class="stats">Total</th>
+  </tr>
+     <tr>
+		<td class="stats">size_rcv</td>
+		<td class="stats">2.24 Mbits/sec</td>
+		<td class="stats">46.96 MB</td>
+     </tr>
+     <tr>
+		<td class="stats">size_sent</td>
+		<td class="stats">5.03 Mbits/sec</td>
+		<td class="stats">102.69 MB</td>
+     </tr>
+ </table>
+</div>
+
+
+<div id="count">
+ <h3>Counters Statistics</h3>
+ <table class="stats">
+  <tr><th class="stats">Name</th> <th class="stats">Highest Rate</th><th class="stats">Total number</th>
+  </tr>
+ </table>
+<p>
+ <table class="stats">
+  <tr><th class="stats">Name</th> <th class="stats">Max</th> </tr>
+     <tr>
+		<td class="stats">connected</td>
+		<td class="stats">3530 </td>
+     </tr>
+     <tr>
+		<td class="stats">finish_users_count</td>
+		<td class="stats">80633 </td>
+     </tr>
+     <tr>
+		<td class="stats">newphase</td>
+		<td class="stats">109 </td>
+     </tr>
+     <tr>
+		<td class="stats">users</td>
+		<td class="stats">5113 </td>
+     </tr>
+     <tr>
+		<td class="stats">users_count</td>
+		<td class="stats">84731 </td>
+     </tr>
+ </table>
+</p>
+</div>
+
+
+<div id="errors">
+ <h3>Errors</h3>
+ <table class="stats">
+  <tr><th class="stats">Name</th> <th class="stats">Highest Rate</th><th class="stats">Total number</th>
+  </tr>
+     <tr>
+		<td class="stats">error_abort</td>
+		<td class="stats">0.1 / sec</td>
+		<td class="stats">1 </td>
+     </tr>
+     <tr>
+		<td class="stats">error_connect_etimedout</td>
+		<td class="stats">8.2 / sec</td>
+		<td class="stats">243 </td>
+     </tr>
+ </table>
+</div>
+
+
+<div id="os_mon">
+ <h3>Server monitoring</h3>
+ <table class="stats">
+  <tr><th class="stats">Name</th> <th class="stats">highest 10sec
+  mean</th><th class="stats">lowest 10sec mean</th>
+  </tr>
+     <tr>
+		<td class="stats">cpu:os_mon@client1</td>
+		<td class="stats">75.04 %</td>
+		<td class="stats">3.19 %</td>
+     </tr>
+     <tr>
+		<td class="stats">cpu:os_mon@client2</td>
+		<td class="stats">81.23 %</td>
+		<td class="stats">2.15 %</td>
+     </tr>
+     <tr>
+		<td class="stats">cpu:os_mon@client3</td>
+		<td class="stats">85.19 %</td>
+		<td class="stats">2.46 %</td>
+     </tr>
+     <tr>
+		<td class="stats">cpu:os_mon@redis</td>
+		<td class="stats">32.40 %</td>
+		<td class="stats">1.30 %</td>
+     </tr>
+     <tr>
+		<td class="stats">cpu:os_mon@server</td>
+		<td class="stats">49.19 %</td>
+		<td class="stats">5.53 %</td>
+     </tr>
+     <tr>
+		<td class="stats">freemem:os_mon@client1</td>
+		<td class="stats">1880.73 MB</td>
+		<td class="stats">1629.87 MB</td>
+     </tr>
+     <tr>
+		<td class="stats">freemem:os_mon@client2</td>
+		<td class="stats">1878.80 MB</td>
+		<td class="stats">1455.16 MB</td>
+     </tr>
+     <tr>
+		<td class="stats">freemem:os_mon@client3</td>
+		<td class="stats">1881.47 MB</td>
+		<td class="stats">1386.71 MB</td>
+     </tr>
+     <tr>
+		<td class="stats">freemem:os_mon@redis</td>
+		<td class="stats">1796.46 MB</td>
+		<td class="stats">1793.08 MB</td>
+     </tr>
+     <tr>
+		<td class="stats">freemem:os_mon@server</td>
+		<td class="stats">3183.24 MB</td>
+		<td class="stats">3133.11 MB</td>
+     </tr>
+     <tr>
+		<td class="stats">load:os_mon@client1</td>
+		<td class="stats">1.61 </td>
+		<td class="stats">0.98 </td>
+     </tr>
+     <tr>
+		<td class="stats">load:os_mon@client2</td>
+		<td class="stats">2.42 </td>
+		<td class="stats">0.92 </td>
+     </tr>
+     <tr>
+		<td class="stats">load:os_mon@client3</td>
+		<td class="stats">1.66 </td>
+		<td class="stats">0.96 </td>
+     </tr>
+     <tr>
+		<td class="stats">load:os_mon@redis</td>
+		<td class="stats">0.59 </td>
+		<td class="stats">0.19 </td>
+     </tr>
+     <tr>
+		<td class="stats">load:os_mon@server</td>
+		<td class="stats">2.08 </td>
+		<td class="stats">1.26 </td>
+     </tr>
+     <tr>
+		<td class="stats">recvpackets:os_mon@client1</td>
+		<td class="stats">49245.00 / sec</td>
+		<td class="stats">4632.00 / sec</td>
+     </tr>
+     <tr>
+		<td class="stats">recvpackets:os_mon@client2</td>
+		<td class="stats">49097.00 / sec</td>
+		<td class="stats">4655.00 / sec</td>
+     </tr>
+     <tr>
+		<td class="stats">recvpackets:os_mon@client3</td>
+		<td class="stats">48996.00 / sec</td>
+		<td class="stats">4627.00 / sec</td>
+     </tr>
+     <tr>
+		<td class="stats">recvpackets:os_mon@redis</td>
+		<td class="stats">48929.00 / sec</td>
+		<td class="stats">4601.00 / sec</td>
+     </tr>
+     <tr>
+		<td class="stats">recvpackets:os_mon@server</td>
+		<td class="stats">48691.00 / sec</td>
+		<td class="stats">4639.00 / sec</td>
+     </tr>
+     <tr>
+		<td class="stats">sentpackets:os_mon@client1</td>
+		<td class="stats">33433.00 / sec</td>
+		<td class="stats">3166.00 / sec</td>
+     </tr>
+     <tr>
+		<td class="stats">sentpackets:os_mon@client2</td>
+		<td class="stats">33341.00 / sec</td>
+		<td class="stats">3185.00 / sec</td>
+     </tr>
+     <tr>
+		<td class="stats">sentpackets:os_mon@client3</td>
+		<td class="stats">33276.00 / sec</td>
+		<td class="stats">3163.00 / sec</td>
+     </tr>
+     <tr>
+		<td class="stats">sentpackets:os_mon@redis</td>
+		<td class="stats">33135.00 / sec</td>
+		<td class="stats">3146.00 / sec</td>
+     </tr>
+     <tr>
+		<td class="stats">sentpackets:os_mon@server</td>
+		<td class="stats">32854.00 / sec</td>
+		<td class="stats">3173.00 / sec</td>
+     </tr>
+ </table>
+</div>
+
+
+<div id="http_status">
+ <h3>HTTP return code </h3>
+ <table class="stats">
+  <tr><th class="stats">Code</th>  <th class="stats">Highest Rate</th><th class="stats">Total number</th>
+  </tr>
+     <tr>
+		<td class="stats">200</td>
+		<td class="stats">2772.6 / sec</td>
+		<td class="stats">464554</td>
+     </tr>
+ </table>
+</div>
+
+</div>
+<hr/>
+<div id="footer">
+    <address>
+		<a href="http://tsung.erlang-projects.org">http://tsung.erlang-projects.org/</a>
+        Contact:   <a href="mailto:tsung-users@process-one.net">tsung-users@process-one.net</a>
+    </address>
+</div>
+  </body>
+</html>
+
