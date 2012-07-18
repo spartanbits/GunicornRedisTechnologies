@@ -1,0 +1,3 @@
+[submodule "static/GunicornRedisTechnologies"]
+	path = static/GunicornRedisTechnologies
+	url = git://github.com/spartanbits/GunicornRedisTechnologies.git
